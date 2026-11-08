@@ -72,7 +72,6 @@
             color: var(--red);
         }
 
-        /* Shop Link optisch leicht abheben und nach ganz rechts setzen */
         .shop-link {
             color: var(--red) !important;
             border: 2px solid var(--red);
@@ -207,37 +206,19 @@
             box-shadow: 0 20px 45px rgba(0,0,0,0.1);
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem;
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .hero-banner { margin-top: 150px; }
-            .section-header h2 { font-size: 2.5rem; }
-        }
-/* --- FOOTER --- */
+        /* --- FOOTER --- */
         footer {
             background-color: var(--black);
             color: var(--white);
             padding: 4rem 2rem;
             text-align: center;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
+            justify-content: center;
         }
 
-        .footer-crew {
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-crew span {
-            color: var(--red);
+        .footer-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .footer-links a {
@@ -252,6 +233,17 @@
         .footer-links a:hover {
             color: var(--white);
         }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .hero-banner { margin-top: 150px; }
+            .section-header h2 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -261,7 +253,6 @@
         <div class="nav-links">
             <a href="#frittwoch">Frittwoch</a>
             <a href="#memes">Memes</a>
-            <!-- Shop ist jetzt ganz rechts und verweist auf die neue Seite -->
             <a href="shop.html" class="shop-link">Shop</a>
         </div>
     </nav>
@@ -299,12 +290,11 @@
         </div>
     </section>
 
-<footer>
-        <div class="footer-crew">
-            Ein Projekt von <span>Levi, Yannick, Paul & Tom</span>
-        </div>
+    <!-- Der neue cleane Footer -->
+    <footer>
         <div class="footer-links">
-            <a href="legal.html">Impressum & Datenschutz</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="kontakt.html">Kontakt</a>
         </div>
     </footer>
 
