@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop – Spaßzentrale</title>
+    <style>
+        :root {
+            --red: #cc1414;
+            --black: #111111;
+            --white: #ffffff;
+            --grey: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--red);
+        }
+        
+        .logo a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .shop-link {
+            color: var(--white) !important;
+            background-color: var(--red);
+            border: 2px solid var(--red);
+            padding: 0.5rem 1rem;
+        }
+
+        /* --- SHOP SEKTION (Standalone) --- */
+        #shop {
+            padding: 12rem 2rem 6rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1.5px;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            width: 100%;
+            max-width: 1100px;
+            align-items: start;
+        }
+
+        /* Galerie */
+        .shop-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: sticky;
+            top: 120px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: var(--grey);
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-text {
+            color: #999;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: absolute;
+        }
+
+        .thumbnail-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumb {
+            aspect-ratio: 1/1;
+            background-color: var(--grey);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .thumb:hover, .thumb.active {
+            border-color: var(--red);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Produkt Details & Formular */
+        .shop-details h2 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .shop-price {
+            font-size: 1.5rem;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .shop-desc {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .order-form label {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        .order-form input, 
+        .order-form select, 
+        .order-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--black);
+            background-color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            border-radius: 0;
+            -webkit-appearance: none; 
+        }
+
+        .order-form input:focus, 
+        .order-form select:focus, 
+        .order-form textarea:focus {
+            border-color: var(--red);
+        }
+
+        .order-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--red);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            .shop-gallery {
+                position: relative;
+                top: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            #shop { padding-top: 14rem; }
+            .section-header h1 { font-size: 2.5rem; }
+            .shop-details h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Spaßzentrale</a></div>
+        <div class="nav-links">
+            <a href="index.html#frittwoch">Frittwoch</a>
+            <a href="index.html#memes">Memes</a>
+            <a href="shop.html" class="shop-link">Shop</a>
+        </div>
+    </nav>
+
+    <section id="shop">
+        <div class="section-header">
+            <h1>Shop</h1>
+            <p>Offizielle Siebdruck-Kollektion</p>
+        </div>
+
+        <div class="shop-layout">
+            <!-- Linke Seite: Bildergalerie -->
+            <div class="shop-gallery">
+                <div class="main-image-container">
+                    <span class="placeholder-text" id="main-placeholder">Bild 1 (Front)</span>
+                    <img id="main-product-image" src="" style="display: none;" alt="Frittwoch Shirt">
+                </div>
+                <div class="thumbnail-row">
+                    <div class="thumb active" onclick="swapImage(this, 'pfad/zum/bild1.jpg', 'Bild 1 (Front)')">1</div>
+                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild2.jpg', 'Bild 2 (Back)')">2</div>
+                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild3.jpg', 'Bild 3 (Detail)')">3</div>
+                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild4.jpg', 'Bild 4 (Model)')">4</div>
+                </div>
+            </div>
+
+            <!-- Rechte Seite: Produktdetails & Formular -->
+            <div class="shop-details">
+                <h2>Frittwoch Shirt</h2>
+                <div class="shop-price">25,00 €</div>
+                <p class="shop-desc">
+                    Handgefertigt im Siebdruckverfahren. Brustlogo vorne und Speisekarte auf dem Rücken.<br><br>
+                    <strong>Limitierter Drop.</strong> Dies ist eine verbindliche Bestellanfrage. Wir prüfen den Bestand und melden uns zeitnah bei dir.
+                </p>
+
+                <h3 class="form-title">Bestellung aufgeben</h3>
+                
+                <!-- Dein Formspree Link -->
+                <form class="order-form" action="https://formspree.io/f/moeeoazv" method="POST">
+                    
+                    <div>
+                        <label for="name">Vor- und Nachname</label>
+                        <input type="text" id="name" name="Name" required placeholder="Max Mustermann">
+                    </div>
+
+                    <div>
+                        <label for="email">E-Mail Adresse</label>
+                        <input type="email" id="email" name="E-Mail" required placeholder="max@beispiel.de">
+                    </div>
+
+                    <div>
+                        <label for="size">Größe</label>
+                        <select id="size" name="Größe" required>
+                            <option value="" disabled selected>Bitte wählen...</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="address">Lieferadresse & Anmerkungen</label>
+                        <textarea id="address" name="Adresse_und_Nachricht" required placeholder="Straße, Hausnummer, PLZ, Ort..."></textarea>
+                    </div>
+
+                    <!-- Spamschutz (unsichtbar) -->
+                    <input type="text" name="_gotcha" style="display:none" />
+
+                    <button type="submit" class="submit-btn">Kauf verbindlich anfragen</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript für die Bildergalerie -->
+    <script>
+        function swapImage(thumbnailElement, imagePath, placeholderText) {
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            thumbnailElement.classList.add('active');
+
+            const mainImg = document.getElementById('main-product-image');
+            const placeholder = document.getElementById('main-placeholder');
+
+            if(imagePath === 'pfad/zum/bild1.jpg' || imagePath.includes('pfad')) {
+                mainImg.style.display = 'none';
+                placeholder.style.display = 'block';
+                placeholder.innerText = placeholderText;
+            } else {
+                mainImg.src = imagePath;
+                mainImg.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
