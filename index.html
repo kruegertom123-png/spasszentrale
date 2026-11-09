@@ -326,16 +326,19 @@
             color: var(--white);
         }
 
-        /* --- RESPONSIVE / MOBILE ANPASSUNGEN (GESTAPELT & PRÄZISE) --- */
+        /* --- RESPONSIVE / MOBILE ANPASSUNGEN (GROSSES LOGO & KNACKIGER ABSTAND) --- */
         @media (max-width: 768px) {
             nav {
                 padding: 1.2rem 1rem 0.8rem;
                 flex-direction: column;
-                gap: 0.8rem;
+                gap: 0.6rem;
+                align-items: center;
             }
 
+            /* Größeres, präsentes Logo auf dem Smartphone */
             .logo a {
-                font-size: 1.8rem !important; /* Starke Startgröße für das Logo */
+                font-size: 2.5rem !important;
+                letter-spacing: -1.5px;
             }
 
             .nav-links {
@@ -343,31 +346,27 @@
             }
 
             .nav-links a {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
 
-            /* --- GESCHRUMPTER ZUSTAND BEIM SCROLLEN --- */
+            /* Scroll-Zustand: Subtil verkleinert */
             nav.scrolled {
-                padding: 0.6rem 1rem 0.6rem;
+                padding: 0.6rem 1rem;
                 gap: 0.4rem;
             }
 
             nav.scrolled .logo a {
-                font-size: 1.3rem !important; /* Schrumpft kompakt zusammen */
+                font-size: 1.8rem !important;
             }
 
-            nav.scrolled .nav-links {
-                gap: 1rem;
-            }
-
-            /* 1. Perfekter Start-Abstand: Das Gruppenfoto schließt genau unter der Navi an */
+            /* Das Gruppenfoto schließt direkt an die Navi an (ohne weißen Spalt) */
             .hero-banner { 
-                margin-top: 115px; 
+                margin-top: 95px; 
             }
 
-            /* 2. Perfekter Ziel-Abstand: Sprünge stoppen exakt unter der geschrumpften Navi */
+            /* Anker-Sprünge stoppen sauber unter der geschrumpften Navi */
             section {
-                scroll-margin-top: 75px;
+                scroll-margin-top: 85px;
             }
 
             .section-header h2 { 
