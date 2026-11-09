@@ -186,7 +186,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
+	}
 
         .section-header {
             text-align: center;
@@ -329,13 +329,13 @@
         /* --- RESPONSIVE / MOBILE ANPASSUNGEN --- */
         @media (max-width: 768px) {
             nav {
-                padding: 1.5rem 1.5rem; /* Kompakterer Freiraum auf Smartphones */
+                padding: 1.5rem 1.5rem;
                 flex-direction: column;
                 gap: 1rem;
             }
 
             .logo a {
-                font-size: 2.2rem; /* Startgröße für das Smartphone (statt 4rem) */
+                font-size: 2.2rem;
             }
 
             nav.scrolled {
@@ -343,11 +343,17 @@
             }
 
             nav.scrolled .logo a {
-                font-size: 1.6rem; /* Kompakterer Wert beim Scrollen auf dem Handy */
+                font-size: 1.6rem;
             }
 
+            /* 1. Hero-Banner weiter nach unten schieben, damit die Navi nichts verdeckt */
             .hero-banner { 
-                margin-top: 120px; /* Passt den oberen Abstand an die mobile Navi an */
+                margin-top: 155px; 
+            }
+
+            /* 2. Größerer Scroll-Abstand für Anker-Links auf dem Smartphone */
+            section {
+                scroll-margin-top: 145px;
             }
 
             .section-header h2 { 
