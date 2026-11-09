@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop – Spaßzentrale</title> 
-
-<!-- Open Graph / Social Media Vorschau -->
+    <title>Shop – Spaßzentrale</title>
+    <!-- Open Graph / Social Media Vorschau -->
     <meta property="og:title" content="Spaßzentrale">
     <meta property="og:description" content="Der nächste Frittwoch, Memes und limitierter Merch aus der Aka.">
-    <!-- Hier liegt jetzt das kleine, stark komprimierte Bild speziell für WhatsApp -->
     <meta property="og:image" content="https://spa%C3%9Fzentrale.de/gruppenfoto-wa.jpg">
-    <meta property="og:url" content="https://spa%C3%9Fzentrale.de/">
+    <meta property="og:url" content="https://spa%C3%9Fzentrale.de/shop.html">
     <meta property="og:type" content="website">
-
+    
     <style>
         :root {
             --red: #cc1414;
@@ -148,20 +146,14 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
 
         .main-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .placeholder-text {
-            color: #999;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: absolute;
+            display: block;
         }
 
         .thumbnail-row {
@@ -179,9 +171,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999;
-            font-size: 0.8rem;
-            font-weight: bold;
+            overflow: hidden;
         }
 
         .thumb:hover, .thumb.active {
@@ -349,20 +339,28 @@
             <!-- Linke Seite: Bildergalerie -->
             <div class="shop-gallery">
                 <div class="main-image-container">
-                    <span class="placeholder-text" id="main-placeholder">Bild 1 (Front)</span>
-                    <img id="main-product-image" src="" style="display: none;" alt="Frittwoch Shirt">
+                    <!-- Standardmäßig wird das Model vorn geladen -->
+                    <img id="main-product-image" src="shop_model_front.jpg" alt="Frittwoch Shirt Model Ansicht">
                 </div>
                 <div class="thumbnail-row">
-                    <div class="thumb active" onclick="swapImage(this, 'pfad/zum/bild1.jpg', 'Bild 1 (Front)')">1</div>
-                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild2.jpg', 'Bild 2 (Back)')">2</div>
-                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild3.jpg', 'Bild 3 (Detail)')">3</div>
-                    <div class="thumb" onclick="swapImage(this, 'pfad/zum/bild4.jpg', 'Bild 4 (Model)')">4</div>
+                    <!-- Die Daumennägel verweisen jetzt direkt auf die Affinity-Dateien -->
+                    <div class="thumb active" onclick="swapImage(this, 'shop_model_front.jpg', 'Frittwoch Shirt Model Ansicht vorn')">
+                        <img src="shop_model_front.jpg" alt="Vorderseite Model">
+                    </div>
+                    <div class="thumb" onclick="swapImage(this, 'shop_model_back.jpg', 'Frittwoch Shirt Model Ansicht hinten')">
+                        <img src="shop_model_back.jpg" alt="Rückseite Model">
+                    </div>
+                    <div class="thumb" onclick="swapImage(this, 'shop_detail_front.jpg', 'Frittwoch Shirt Brustdruck Detail')">
+                        <img src="shop_detail_front.jpg" alt="Brustdruck Detail">
+                    </div>
+                    <div class="thumb" onclick="swapImage(this, 'shop_detail_back.jpg', 'Frittwoch Shirt Rückendruck Detail')">
+                        <img src="shop_detail_back.jpg" alt="Rückendruck Detail">
+                    </div>
                 </div>
             </div>
 
             <!-- Rechte Seite: Produktdetails & Formular -->
             <div class="shop-details">
-                <!-- Das Wort "Frittwoch" ist jetzt rot formatiert -->
                 <h2><span style="color: var(--red);">Frittwoch</span> Shirt</h2>
                 <p class="shop-desc">
                     Handgefertigt im Siebdruckverfahren. Brustlogo vorne und Speisekarte auf dem Rücken.<br><br>
@@ -408,7 +406,6 @@
         </div>
     </section>
 
-    <!-- Der neue cleane Footer ohne Namen -->
     <footer>
         <div class="footer-links">
             <a href="datenschutz.html">Datenschutz</a>
@@ -416,24 +413,20 @@
         </div>
     </footer>
 
+    <!-- JavaScript für die Bildergalerie -->
     <script>
-        function swapImage(thumbnailElement, imagePath, placeholderText) {
+        function swapImage(thumbnailElement, imagePath, altText) {
+            // Aktiven Rahmen von allen Thumbnails entfernen
             const thumbs = document.querySelectorAll('.thumb');
             thumbs.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Dem geklickten Thumbnail den aktiven Status geben
             thumbnailElement.classList.add('active');
 
+            // Das Hauptbild anpassen
             const mainImg = document.getElementById('main-product-image');
-            const placeholder = document.getElementById('main-placeholder');
-
-            if(imagePath === 'pfad/zum/bild1.jpg' || imagePath.includes('pfad')) {
-                mainImg.style.display = 'none';
-                placeholder.style.display = 'block';
-                placeholder.innerText = placeholderText;
-            } else {
-                mainImg.src = imagePath;
-                mainImg.style.display = 'block';
-                placeholder.style.display = 'none';
-            }
+            mainImg.src = imagePath;
+            mainImg.alt = altText;
         }
     </script>
 </body>
