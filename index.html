@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spaßzentrale</title>
 
+<!-- Favicon & Apple Touch Icon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <!-- Open Graph / Social Media Vorschau -->
     <meta property="og:title" content="Spaßzentrale">
     <meta property="og:description" content="Der nächste Frittwoch, Memes und limitierter Merch aus der Aka.">
@@ -102,18 +106,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 3rem;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 3.5rem 3rem; /* Größerer Abstand am Seitenanfang */
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid #eaeaea;
+            transition: padding 0.3s ease, background-color 0.3s ease; /* Weicher Übergang */
         }
 
         .logo {
             font-weight: 900;
-            font-size: 2.2rem;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             color: var(--red);
         }
 
@@ -121,6 +125,18 @@
         .logo a {
             color: var(--red);
             text-decoration: none;
+            font-size: 4rem; /* Große Einstiegsgröße */
+            line-height: 1;
+            transition: font-size 0.3s ease; /* Weiches Schrumpfen */
+        }
+
+	/* ZUSTAND BEIM SCROLLEN (exakt synchron mit shop.html) */
+        nav.scrolled {
+            padding: 1.5rem 3rem; /* Von 1rem auf 1.5rem angepasst */
+        }
+
+        nav.scrolled .logo a {
+            font-size: 2.2rem;
         }
 
         .nav-links {
@@ -154,14 +170,12 @@
             color: var(--white) !important;
         }
 
-        /* --- HERO BANNER --- */
+        /* --- HERO BANNER ABSTAND --- */
         .hero-banner {
             width: 100%;
-            margin-top: 80px; /* Abstand zur fixierten Navigation */
+            margin-top: 170px; /* Erhöht, damit das große Logo am Anfang nichts verdeckt */
             background-color: var(--grey);
             border-bottom: 2px solid var(--grey);
-            /* display, height und min-height fallen hier weg, das Bild diktiert jetzt die Höhe 	*/
-        
         }
 
         /* --- SECTIONS --- */
@@ -218,22 +232,20 @@
             color: var(--red);
         }
 
-        .menu-full-placeholder {
+        /* --- SPEISEKARTE --- */
+        .menu-container {
             width: 100%;
             max-width: 900px;
-            aspect-ratio: 3 / 4;
-            border: 3px dashed var(--red);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #fafafa;
-            color: var(--red);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            font-weight: 800;
-            text-align: center;
-            padding: 2rem;
+            border: none;
+            background-color: var(--white);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .menu-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* --- MEMES GALLERY --- */
@@ -362,8 +374,9 @@
             </div>
         </div>
 
-        <div class="menu-full-placeholder">
-            [ Hier kommt die fertige <br>Speisekarten-Grafik hin ]
+        <!-- NEU: Fertige Speisekarte -->
+        <div class="menu-container">
+            <img src="speisekarte.jpg" alt="Frittwoch Speisekarte" class="menu-image">
         </div>
     </section>
 
@@ -395,6 +408,16 @@
             <a href="kontakt.html">Kontakt</a>
         </div>
     </footer>
-
+<script>
+        // Erkennt das Scrollen und schaltet die Klasse .scrolled ein/aus
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 30) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
