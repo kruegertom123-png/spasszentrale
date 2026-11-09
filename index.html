@@ -62,7 +62,8 @@
             display: flex;
             width: 100%;
             max-width: 350px;
-            border-bottom: 2px solid var(--black);
+            border-bottom: 2px solid var(--grey);
+	    border-top: 2px solid var(--grey);
             transition: border-color 0.2s ease;
         }
         .wish-form:focus-within {
@@ -325,15 +326,33 @@
             color: var(--white);
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE / MOBILE ANPASSUNGEN --- */
         @media (max-width: 768px) {
             nav {
-                padding: 1.5rem;
+                padding: 1.5rem 1.5rem; /* Kompakterer Freiraum auf Smartphones */
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
             }
-            .hero-banner { margin-top: 150px; }
-            .section-header h2 { font-size: 2.5rem; }
+
+            .logo a {
+                font-size: 2.2rem; /* Startgröße für das Smartphone (statt 4rem) */
+            }
+
+            nav.scrolled {
+                padding: 1rem 1.5rem;
+            }
+
+            nav.scrolled .logo a {
+                font-size: 1.6rem; /* Kompakterer Wert beim Scrollen auf dem Handy */
+            }
+
+            .hero-banner { 
+                margin-top: 120px; /* Passt den oberen Abstand an die mobile Navi an */
+            }
+
+            .section-header h2 { 
+                font-size: 2.5rem; 
+            }
         }
     </style>
 </head>
