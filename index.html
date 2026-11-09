@@ -39,6 +39,61 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* --- WUNSCH-FELD --- */
+        .wish-container {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .wish-container label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: #888;
+        }
+        .wish-form {
+            display: flex;
+            width: 100%;
+            max-width: 350px;
+            border-bottom: 2px solid var(--black);
+            transition: border-color 0.2s ease;
+        }
+        .wish-form:focus-within {
+            border-color: var(--red);
+        }
+        .wish-form input {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            padding: 0.8rem 0;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            color: var(--black);
+        }
+        .wish-form input::placeholder {
+            color: #ccc;
+            font-weight: 400;
+        }
+        .wish-form button {
+            background: transparent;
+            border: none;
+            color: var(--black);
+            font-size: 1.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            padding: 0 0.5rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .wish-form button:hover {
+            color: var(--red);
+            transform: translateX(3px);
+        }
+
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
@@ -60,6 +115,12 @@
             text-transform: uppercase;
             letter-spacing: -1px;
             color: var(--red);
+        }
+
+/* Sorgt dafür, dass der Logo-Link gewohnt rot bleibt und keine Unterstreichung hat */
+        .logo a {
+            color: var(--red);
+            text-decoration: none;
         }
 
         .nav-links {
@@ -98,7 +159,7 @@
             width: 100%;
             margin-top: 80px; /* Abstand zur fixierten Navigation */
             background-color: var(--grey);
-            border-bottom: 2px solid var(--red);
+            border-bottom: 2px solid var(--grey);
             /* display, height und min-height fallen hier weg, das Bild diktiert jetzt die Höhe 	*/
         
         }
@@ -267,7 +328,7 @@
 <body>
 
     <nav>
-        <div class="logo">Spaßzentrale</div>
+       <div class="logo"><a href="#">Spaßzentrale</a></div>
         <div class="nav-links">
             <a href="#frittwoch">Frittwoch</a>
             <a href="#memes">Memes</a>
@@ -288,6 +349,17 @@
         <div class="next-event">
             <h3>Nächster Frittwoch: <span>21. Oktober</span></h3>
             <p>Wir bauen die Fritteusen auf. Kommt vorbei und bringt Hunger mit. Solange der Vorrat reicht.</p>
+<!-- Das neue, dezente Wunsch-Feld -->
+            <div class="wish-container">
+                <label for="wunsch">Was soll als nächstes in die Fritteuse?</label>
+                <form class="wish-form" action="https://formspree.io/f/moeeoazv" method="POST">
+                    <!-- Verstecktes Feld, damit du in der E-Mail weißt, worum es geht -->
+                    <input type="hidden" name="Kategorie" value="*** NEUER FRITTWOCH WUNSCH ***">
+                    
+                    <input type="text" id="wunsch" name="Wunsch" placeholder="z.B. Käsekrokette..." required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
         </div>
 
         <div class="menu-full-placeholder">
