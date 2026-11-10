@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt – Spaßzentrale</title>
 
-<!-- Favicon & Apple Touch Icon -->
+    <!-- Favicon & Apple Touch Icon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<!-- Open Graph / Social Media Vorschau -->
+    <!-- Open Graph / Social Media Vorschau -->
     <meta property="og:title" content="Spaßzentrale">
     <meta property="og:description" content="Der nächste Frittwoch, Memes und limitierter Merch aus der Aka.">
     <!-- Hier liegt jetzt das kleine, stark komprimierte Bild speziell für WhatsApp -->
@@ -18,30 +19,135 @@
     <meta property="og:type" content="website">
 
     <style>
-        :root { --red: #cc1414; --black: #111111; --white: #ffffff; --grey: #f4f4f4; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: var(--white); color: var(--black); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #eaeaea; }
-        .logo { font-weight: 900; font-size: 2.2rem; text-transform: uppercase; letter-spacing: -1px; }
-        .logo a { color: var(--red); text-decoration: none; }
-        
-        section { padding: 10rem 2rem 6rem; max-width: 800px; margin: 0 auto; min-height: calc(100vh - 150px); }
-        h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: -1.5px; margin-bottom: 3rem; font-weight: 900; }
-        p { margin-bottom: 1.5rem; color: #444; font-size: 1.1rem; }
-        a { color: var(--red); text-decoration: none; }
+        :root {
+            --red: #cc1414;
+            --black: #111111;
+            --white: #ffffff;
+            --grey: #f4f4f4;
+        }
 
-        .satire-box { border: 2px solid var(--black); padding: 1.5rem; margin-bottom: 4rem; background-color: var(--grey); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .logo a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        section {
+            padding: 10rem 2rem 6rem;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: calc(100vh - 150px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: -1.5px;
+            margin-bottom: 3rem;
+            font-weight: 900;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #444;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .satire-box {
+            border: 2px solid var(--black);
+            padding: 1.5rem;
+            margin-bottom: 4rem;
+            background-color: var(--grey);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
 
         /* --- FOOTER --- */
-        footer { background-color: var(--black); color: var(--white); padding: 4rem 2rem; text-align: center; display: flex; justify-content: center; }
-        .footer-links { display: flex; gap: 2rem; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s ease; }
-        .footer-links a:hover { color: var(--white); }
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
 
-        @media (max-width: 768px) { nav { padding: 1.5rem; justify-content: center; } section { padding-top: 8rem; } h1 { font-size: 3rem; } }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem;
+                justify-content: center;
+            }
+
+            section {
+                padding-top: 8rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -50,16 +156,18 @@
 
     <section>
         <h1>Kontakt</h1>
-        
+
         <div class="satire-box">
-            Hinweis: Die Spaßzentrale ist ein studentisches Kunst- und Satireprojekt. Der Fokus liegt primär auf der Refinanzierung von Frittenfett, Serverkosten und Siebdruckfarbe.
+            Hinweis: Die Spaßzentrale ist ein studentisches Kunst- und Satireprojekt. Der Fokus liegt primär auf der
+            Refinanzierung von Frittenfett, Serverkosten und Siebdruckfarbe.
         </div>
 
         <p><strong>Online:</strong><br>
-        Schreib uns eine E-Mail an <a href="mailto:info@spaßzentrale.de" style="font-weight: 800; font-size: 1.3rem;">info@spaßzentrale.de</a></p>
+            Schreib uns eine E-Mail an <a href="mailto:info@spaßzentrale.de"
+                style="font-weight: 800; font-size: 1.3rem;">info@spaßzentrale.de</a></p>
 
         <p style="margin-top: 3rem;"><strong>Offline:</strong><br>
-        Direkt bei Levi, Paul, Yannick oder Tom in der Aka.</p>
+            Direkt bei Levi, Paul, Yannick oder Tom in der Aka.</p>
     </section>
 
     <footer>
@@ -70,4 +178,5 @@
     </footer>
 
 </body>
+
 </html>

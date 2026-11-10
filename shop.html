@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop – Spaßzentrale</title>
 
-<!-- Favicon & Apple Touch Icon -->
+    <!-- Favicon & Apple Touch Icon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -15,7 +16,7 @@
     <meta property="og:image" content="https://spa%C3%9Fzentrale.de/gruppenfoto-wa.jpg">
     <meta property="og:url" content="https://spa%C3%9Fzentrale.de/shop.html">
     <meta property="og:type" content="website">
-    
+
     <style>
         :root {
             --red: #cc1414;
@@ -60,7 +61,7 @@
             letter-spacing: -1px;
             color: var(--red);
         }
-        
+
         .logo a {
             color: var(--red);
             text-decoration: none;
@@ -179,7 +180,8 @@
             overflow: hidden;
         }
 
-        .thumb:hover, .thumb.active {
+        .thumb:hover,
+        .thumb.active {
             border-color: var(--red);
         }
 
@@ -229,8 +231,8 @@
             color: var(--black);
         }
 
-        .order-form input, 
-        .order-form select, 
+        .order-form input,
+        .order-form select,
         .order-form textarea {
             width: 100%;
             padding: 1rem;
@@ -241,11 +243,12 @@
             outline: none;
             transition: border-color 0.2s ease;
             border-radius: 0;
-            -webkit-appearance: none; 
+            appearance: none;
+            -webkit-appearance: none;
         }
 
-        .order-form input:focus, 
-        .order-form select:focus, 
+        .order-form input:focus,
+        .order-form select:focus,
         .order-form textarea:focus {
             border-color: var(--red);
         }
@@ -306,23 +309,35 @@
             .shop-layout {
                 grid-template-columns: 1fr;
             }
+
             .shop-gallery {
                 position: relative;
                 top: 0;
             }
         }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1.5rem;
                 flex-direction: column;
                 gap: 1.5rem;
             }
-            #shop { padding-top: 14rem; }
-            .section-header h1 { font-size: 2.5rem; }
-            .shop-details h2 { font-size: 2rem; }
+
+            #shop {
+                padding-top: 14rem;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .shop-details h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -349,16 +364,20 @@
                 </div>
                 <div class="thumbnail-row">
                     <!-- Die Daumennägel verweisen jetzt direkt auf die Affinity-Dateien -->
-                    <div class="thumb active" onclick="swapImage(this, 'shop_model_front.jpg', 'Frittwoch Shirt Model Ansicht vorn')">
+                    <div class="thumb active"
+                        onclick="swapImage(this, 'shop_model_front.jpg', 'Frittwoch Shirt Model Ansicht vorn')">
                         <img src="shop_model_front.jpg" alt="Vorderseite Model">
                     </div>
-                    <div class="thumb" onclick="swapImage(this, 'shop_model_back.jpg', 'Frittwoch Shirt Model Ansicht hinten')">
+                    <div class="thumb"
+                        onclick="swapImage(this, 'shop_model_back.jpg', 'Frittwoch Shirt Model Ansicht hinten')">
                         <img src="shop_model_back.jpg" alt="Rückseite Model">
                     </div>
-                    <div class="thumb" onclick="swapImage(this, 'shop_detail_front.jpg', 'Frittwoch Shirt Brustdruck Detail')">
+                    <div class="thumb"
+                        onclick="swapImage(this, 'shop_detail_front.jpg', 'Frittwoch Shirt Brustdruck Detail')">
                         <img src="shop_detail_front.jpg" alt="Brustdruck Detail">
                     </div>
-                    <div class="thumb" onclick="swapImage(this, 'shop_detail_back.jpg', 'Frittwoch Shirt Rückendruck Detail')">
+                    <div class="thumb"
+                        onclick="swapImage(this, 'shop_detail_back.jpg', 'Frittwoch Shirt Rückendruck Detail')">
                         <img src="shop_detail_back.jpg" alt="Rückendruck Detail">
                     </div>
                 </div>
@@ -369,13 +388,14 @@
                 <h2><span style="color: var(--red);">Frittwoch</span> Shirt</h2>
                 <p class="shop-desc">
                     Handgefertigt im Siebdruckverfahren. Brustlogo vorne und Speisekarte auf dem Rücken.<br><br>
-                    <strong>Limitierter Drop.</strong> Trage dich unverbindlich in die Warteliste ein und wir melden uns, sobald die Möglichkeit besteht ein exklusives Shirt zu ergattern.
+                    <strong>Limitierter Drop.</strong> Trage dich unverbindlich in die Warteliste ein und wir melden
+                    uns, sobald die Möglichkeit besteht ein exklusives Shirt zu ergattern.
                 </p>
 
                 <h3 class="form-title">Warteliste</h3>
-                
+
                 <form class="order-form" action="https://formspree.io/f/moeeoazv" method="POST">
-                    
+
                     <div>
                         <label for="name">Vor- und Nachname</label>
                         <input type="text" id="name" name="Name" required placeholder="Max Mustermann">
@@ -424,7 +444,7 @@
             // Aktiven Rahmen von allen Thumbnails entfernen
             const thumbs = document.querySelectorAll('.thumb');
             thumbs.forEach(thumb => thumb.classList.remove('active'));
-            
+
             // Dem geklickten Thumbnail den aktiven Status geben
             thumbnailElement.classList.add('active');
 
@@ -435,4 +455,5 @@
         }
     </script>
 </body>
+
 </html>
