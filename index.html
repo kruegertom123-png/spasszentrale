@@ -58,7 +58,7 @@
 
         /* --- WUNSCH-FELD --- */
         .wish-container {
-            margin-top: 3rem;
+            margin: 1rem auto 9rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -207,7 +207,7 @@
 
         /* --- SECTIONS --- */
         section {
-            padding: 8rem 2rem 6rem;
+            padding: 8rem 2rem 0rem;
             min-height: 80vh;
             display: flex;
             flex-direction: column;
@@ -303,7 +303,7 @@
             color: var(--red);
         }
 
-        /* --- SPEISEKARTE --- */
+        /* --- SPEISEKARTE (ausgesetzt)--- */
         .menu-container {
             width: 100%;
             max-width: 900px;
@@ -317,6 +317,76 @@
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Dezenter Fritten-Zufallsgenerator */
+        .fritten-orakel {
+            width: 100%;
+            margin: 2.5rem 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.6rem;
+        }
+
+        .orakel-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.65;
+        }
+
+        .orakel-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .orakel-slot {
+            padding: 0.3rem 0.65rem;
+            border: 1.5px solid var(--grey, #f4f4f4);
+            background-color: var(--white, #ffffff);
+            color: var(--black, #111111);
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .orakel-slot:hover {
+            border-color: var(--red, #e30613);
+        }
+
+        .orakel-mit {
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0.7;
+        }
+
+        .orakel-btn {
+            padding: 0.3rem 0.75rem;
+            border: 1.5px solid var(--red, #e30613);
+            background-color: var(--red, #e30613);
+            color: var(--white, #ffffff);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .orakel-btn:hover {
+            background-color: var(--black, #111111);
+            border-color: var(--black, #111111);
         }
 
         /* --- MEMES GALLERY --- */
@@ -483,18 +553,31 @@
             <p>Außerdem gibt es die Möglichkeit, unsere legendären Shirts in S, M und L anzuprobieren und euch als einer
                 der ersten eins zu sichern!
             </p>
-            <!-- Das neue, dezente Wunsch-Feld -->
-            <div class="wish-container">
-                <label for="wunsch">Was soll als nächstes in die Fritteuse?</label>
-                <form class="wish-form" action="https://formspree.io/f/moeeoazv" method="POST">
-                    <!-- Verstecktes Feld, damit du in der E-Mail weißt, worum es geht -->
-                    <input type="hidden" name="Kategorie" value="*** NEUER FRITTWOCH WUNSCH ***">
-                    <input type="text" id="wunsch" name="Wunsch" placeholder="z.B. Käsekrokette..." required>
-                    <button type="submit">→</button>
-                </form>
+
+            <div class="fritten-orakel">
+                <span class="orakel-label">WAS ESSE ICH HEUTE?</span>
+                <div class="orakel-row">
+                    <span class="orakel-slot" id="orakel-dish" title="Klicken für ein anderes Gericht">STEAKHOUSE
+                        FRITES</span>
+                    <span class="orakel-mit">MIT</span>
+                    <span class="orakel-slot" id="orakel-sauce"
+                        title="Klicken für eine andere Sauce">KNOBLAUCH-MAYO</span>
+                    <button type="button" class="orakel-btn" id="orakel-roll">↻ NEU</button>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Das neue, dezente Wunsch-Feld -->
+    <div class="wish-container">
+        <label for="wunsch">Was soll als nächstes in die Fritteuse?</label>
+        <form class="wish-form" action="https://formspree.io/f/moeeoazv" method="POST">
+            <!-- Verstecktes Feld, damit du in der E-Mail weißt, worum es geht -->
+            <input type="hidden" name="Kategorie" value="*** NEUER FRITTWOCH WUNSCH ***">
+            <input type="text" id="wunsch" name="Wunsch" placeholder="z.B. Käsekrokette..." required>
+            <button type="submit">→</button>
+        </form>
+    </div>
 
     <section id="memes">
         <div class="section-header">
@@ -616,6 +699,66 @@
             timerInterval = setInterval(updateCountdown, 1000);
         }
     </script>
+
+    <script>
+        // === HIER EURE GERICHTE & SAUCEN EINTRAGEN ===
+        const GERICHTE = [
+            "FRITTEN",
+            "NUGGETS",
+            "BITTERBALLEN",
+            "FRÜHLINGSROLLEN",
+            "FRIKANDEL",
+            "MEXICANO",
+            "POULYCROC",
+            "KÄSEKROKETTE",
+            "MITRAILLETTE"
+        ];
+
+        const SAUCEN = [
+            "KETCHUP",
+            "MAYO",
+            "SAMURAI",
+            "BRASIL",
+            "ANDALOUSE",
+            "COCKTAILSAUCE",
+            "AIGREDOUX"
+        ];
+        // ============================================
+
+        const dishEl = document.getElementById("orakel-dish");
+        const sauceEl = document.getElementById("orakel-sauce");
+        const rollBtn = document.getElementById("orakel-roll");
+
+        function pickRandom(list, currentText) {
+            if (list.length <= 1) return list[0];
+            let next;
+            do {
+                next = list[Math.floor(Math.random() * list.length)];
+            } while (next === currentText);
+            return next;
+        }
+
+        function rollDish() {
+            dishEl.textContent = pickRandom(GERICHTE, dishEl.textContent);
+        }
+
+        function rollSauce() {
+            sauceEl.textContent = pickRandom(SAUCEN, sauceEl.textContent);
+        }
+
+        function rollAll() {
+            rollDish();
+            rollSauce();
+        }
+
+        // Beim Laden der Seite direkt eine zufällige Kombi anzeigen
+        rollAll();
+
+        rollBtn.addEventListener("click", rollAll);
+        dishEl.addEventListener("click", rollDish);
+        sauceEl.addEventListener("click", rollSauce);
+    </script>
+
 </body>
 
 </html>
