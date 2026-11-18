@@ -350,6 +350,14 @@
             letter-spacing: 0.5px;
         }
 
+        .orakel-combo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
         .orakel-slot {
             padding: 0.3rem 0.65rem;
             border: 1.5px solid var(--grey, #f4f4f4);
@@ -514,6 +522,15 @@
             .section-header h2 {
                 font-size: 2.2rem;
             }
+
+            .orakel-row {
+                flex-direction: column;
+                gap: 0.45rem;
+            }
+
+            .wish-container {
+                margin-top: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -557,11 +574,13 @@
             <div class="fritten-orakel">
                 <span class="orakel-label">WAS ESSE ICH HEUTE?</span>
                 <div class="orakel-row">
-                    <span class="orakel-slot" id="orakel-dish" title="Klicken für ein anderes Gericht">STEAKHOUSE
-                        FRITES</span>
-                    <span class="orakel-mit">MIT</span>
-                    <span class="orakel-slot" id="orakel-sauce"
-                        title="Klicken für eine andere Sauce">KNOBLAUCH-MAYO</span>
+                    <div class="orakel-combo">
+                        <span class="orakel-slot" id="orakel-dish" title="Klicken für ein anderes Gericht">STEAKHOUSE
+                            FRITES</span>
+                        <span class="orakel-mit">MIT</span>
+                        <span class="orakel-slot" id="orakel-sauce"
+                            title="Klicken für eine andere Sauce">KNOBLAUCH-MAYO</span>
+                    </div>
                     <button type="button" class="orakel-btn" id="orakel-roll">↻ NEU</button>
                 </div>
             </div>
