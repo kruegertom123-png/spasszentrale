@@ -236,6 +236,50 @@
             font-weight: 600;
         }
 
+        /* Minimalistischer Typo-Countdown in h3-Größe */
+        .countdown-line {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin: 0.75rem 0 2rem;
+            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--black, #111111);
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            background-color: var(--red, #e30613);
+            display: inline-block;
+            flex-shrink: 0;
+            animation: pulseDot 1.5s infinite;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.25;
+            }
+        }
+
+        .countdown-timer {
+            font-variant-numeric: tabular-nums;
+            color: var(--red, #e30613);
+        }
+
+        .countdown-line.is-live {
+            color: var(--red, #e30613);
+        }
+
         /* --- FRITTWOCH INFO --- */
         .next-event {
             width: 100%;
@@ -411,7 +455,8 @@
         <div class="nav-links">
             <a href="#frittwoch">Frittwoch</a>
             <a href="#memes">Memes</a>
-            <a href="https://www.instagram.com/spasszentrale.de?psln=MWZoZnV1MjRtMDh5NQ%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.instagram.com/spasszentrale.de?psln=MWZoZnV1MjRtMDh5NQ%3D%3D&utm_source=qr"
+                target="_blank" rel="noopener">Instagram</a>
             <a href="shop.html" class="shop-link">Shop</a>
         </div>
 
@@ -426,11 +471,17 @@
             <p>Wenn dann Mittwoch</p>
         </div>
 
+        <div class="countdown-line" id="frittwoch-countdown" style="display: none;">
+            <span class="status-dot"></span>
+            <span class="countdown-timer" id="countdown-timer">00T 00H 00M 00S</span>
+        </div>
+
         <div class="next-event">
             <h3>Nächster Frittwoch: <span>25. November</span></h3>
             <p>Wir bauen die Fritteusen auf. Kommt vorbei und bringt Vorrat mit. Solange der Hunger reicht.
             </p>
-            <p>Außerdem gibt es die Möglichkeit, unsere legendären Shirts in S, M und L anzuprobieren und euch als einer der ersten eins zu sichern!
+            <p>Außerdem gibt es die Möglichkeit, unsere legendären Shirts in S, M und L anzuprobieren und euch als einer
+                der ersten eins zu sichern!
             </p>
             <!-- Das neue, dezente Wunsch-Feld -->
             <div class="wish-container">
@@ -518,6 +569,57 @@
                 nav.classList.remove('scrolled');
             }
         });
+    </script>
+
+    <script>
+        // === HIER EUREN ZEITPUNKT, DAUER & LIVE-TEXT FESTLEGEN ===
+        // Format: "JJJJ-MM-TTTHH:MM:SS" (leer lassen "", wenn nichts ansteht)
+        const ZIEL_ZEITPUNKT = "2026-11-25T16:30:00";
+        const LIVE_DAUER_STUNDEN = 2;
+        const TEXT_LIVE = "ES IST FRITTWOCH! - DIE FRITTEUSEN LAUFEN!";
+        // ==========================================================
+
+        const container = document.getElementById("frittwoch-countdown");
+        const timerEl = document.getElementById("countdown-timer");
+
+        if (ZIEL_ZEITPUNKT.trim() !== "") {
+            const targetTime = new Date(ZIEL_ZEITPUNKT).getTime();
+            const liveWindowMs = LIVE_DAUER_STUNDEN * 60 * 60 * 1000;
+            let timerInterval;
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const diff = targetTime - now;
+
+                // 1. Vor dem Start: Normaler Countdown
+                if (diff > 0) {
+                    const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0");
+                    const hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+                    const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+                    const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
+
+                    container.classList.remove("is-live");
+                    timerEl.textContent = `${days}T ${hours}H ${minutes}M ${seconds}S`;
+                    container.style.display = "inline-flex";
+                    return;
+                }
+
+                // 2. Innerhalb der 2 Stunden nach Start: Live-Nachricht anzeigen
+                if (diff <= 0 && diff > -liveWindowMs) {
+                    container.classList.add("is-live");
+                    timerEl.textContent = TEXT_LIVE;
+                    container.style.display = "inline-flex";
+                    return;
+                }
+
+                // 3. Nach Ablauf der 2 Stunden (oder ungültigem Datum): Komplett ausblenden
+                container.style.display = "none";
+                if (timerInterval) clearInterval(timerInterval);
+            }
+
+            updateCountdown();
+            timerInterval = setInterval(updateCountdown, 1000);
+        }
     </script>
 </body>
 
