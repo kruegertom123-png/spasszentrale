@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop – Spaßzentrale</title>
+    <title>Merch – Spaßzentrale</title>
 
     <!-- Favicon & Apple Touch Icon -->
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -13,7 +13,7 @@
     <!-- Open Graph / WhatsApp & Instagram Vorschau Shop -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xn--spazentrale-x6a.de/shop.html">
-    <meta property="og:title" content="SPAßZENTRALE SHOP – Frittwoch Shirt">
+    <meta property="og:title" content="SPAßZENTRALE MERCH – Frittwoch Shirt">
     <meta property="og:description" content="Exklusiver Frittwoch Merch.">
     <meta property="og:image" content="https://xn--spazentrale-x6a.de/shop_opener-wa.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -284,6 +284,25 @@
             background-color: var(--red);
         }
 
+        .form-privacy-note {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            line-height: 1.45;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .form-privacy-note a {
+            color: var(--black, #111111);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease;
+        }
+
+        .form-privacy-note a:hover {
+            color: var(--red, #e30613);
+        }
+
         /* --- FOOTER --- */
         footer {
             background-color: var(--black);
@@ -370,14 +389,14 @@
             <a href="index.html#memes">Memes</a>
             <a href="https://www.instagram.com/spasszentrale.de?psln=MWZoZnV1MjRtMDh5NQ%3D%3D&utm_source=qr"
                 target="_blank" rel="noopener">Instagram</a>
-            <a href="shop.html" class="shop-link">Shop</a>
+            <a href="shop.html" class="shop-link">Merch</a>
         </div>
     </nav>
 
     <section id="shop">
         <div class="section-header">
-            <h1>Shop</h1>
-            <p>Offizielle Siebdruck-Kollektion</p>
+            <h1>Merch</h1>
+            <p>Limitierte Siebdruck-Kollektion</p>
         </div>
 
         <div class="shop-layout">
@@ -453,6 +472,10 @@
                     </div>
 
                     <button type="submit" class="submit-btn">Auf die Warteliste</button>
+                    <p class="form-privacy-note">
+                        Mit dem Eintragen stimmst du zu, dass wir deine Angaben zur Benachrichtigung über den Shirt-Drop
+                        speichern. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+                    </p>
                 </form>
             </div>
         </div>
